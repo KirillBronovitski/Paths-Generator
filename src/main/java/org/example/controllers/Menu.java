@@ -1,4 +1,7 @@
-package org.example;
+package org.example.controllers;
+
+import org.example.model.Node;
+import org.example.services.Maze;
 
 import java.io.*;
 import java.util.Arrays;

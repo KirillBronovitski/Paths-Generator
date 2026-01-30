@@ -1,9 +1,8 @@
 package org.example;
 
-import java.io.*;
-import java.util.*;
+import org.example.controllers.Menu;
 
-public class Main {
+public class PathGeneratorApplication {
 
     public static void main(String[] args) {
         Menu menu = new Menu();

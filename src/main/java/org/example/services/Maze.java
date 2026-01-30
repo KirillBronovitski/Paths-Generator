@@ -1,4 +1,6 @@
-package org.example;
+package org.example.services;
+
+import org.example.model.Node;
 
 import java.util.*;
 
@@ -12,7 +14,7 @@ public class Maze {
 
     private final Deque<Frame> frames = new ArrayDeque<>();
 
-    record Frame(int[] leafCoordinates, List<String> leaves, List<String> leavesOfCurrent/*, Node currentNode*/) {
+    record Frame(int[] leafCoordinates, List<String> leaves, List<String> leavesOfCurrent) {
     }
 
     private final int[][] mazeMatrix;
@@ -23,7 +25,7 @@ public class Maze {
 
     private List<int[]> pathToExit;
 
-    Maze(int length, int width) {
+    public Maze(int length, int width) {
         this.length = length;
         this.width = width;
 
@@ -40,7 +42,7 @@ public class Maze {
         this.adjacencyList = createAdjacencyList(this.mazeMatrix, this.entranceCoordinates);
     }
 
-    Maze(int[][] mazeMatrix, Map<String, Node> adjacencyList, int[] entranceCoordinates, int[] exitCoordinates) {
+    public Maze(int[][] mazeMatrix, Map<String, Node> adjacencyList, int[] entranceCoordinates, int[] exitCoordinates) {
         this.length = mazeMatrix.length;
         this.width = mazeMatrix[0].length;
         this.mazeMatrix = mazeMatrix;
@@ -180,7 +182,7 @@ public class Maze {
         }
     }
 
-    static Map<String, Node> createAdjacencyList(int[][] mazeMatrix, int[] entranceCoordinates) {
+    public static Map<String, Node> createAdjacencyList(int[][] mazeMatrix, int[] entranceCoordinates) {
         Map<String, Node> adjacencyList = new HashMap<>();
         for (int r = 0; r < mazeMatrix.length; r++) {
             for (int c = 0; c < mazeMatrix[r].length; c++) {
@@ -255,7 +257,7 @@ public class Maze {
         return adjacencyList;
     }
 
-    void findExit() {
+    public void findExit() {
         if (pathToExit != null) {
             for (int[] nodeCoordinates : pathToExit) {
                 mazeMatrix[nodeCoordinates[0]][nodeCoordinates[1]] = 2;
@@ -298,15 +300,15 @@ public class Maze {
         pathToExit = exit.pathToNode;
     }
 
-    int[][] getMazeMatrix() {
+    public int[][] getMazeMatrix() {
         return this.mazeMatrix;
     }
 
-    String getEntranceCoordinates() {
+    public String getEntranceCoordinates() {
         return this.entranceCoordinates[0] + " " + this.entranceCoordinates[1];
     }
 
-    String getExitCoordinates() {
+    public String getExitCoordinates() {
         return this.exitCoordinates[0] + " " + this.exitCoordinates[1];
     }
 
